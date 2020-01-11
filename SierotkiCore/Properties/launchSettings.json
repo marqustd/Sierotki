@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "SierotkiCore": {
+      "commandName": "Project",
+      "commandLineArgs": "-i praca.tex"
+    }
+  }
+}
