@@ -1,6 +1,4 @@
-﻿using System.Text.RegularExpressions;
-
-namespace SierotkiCore.Logic
+﻿namespace SierotkiCore.Logic.Lines
 {
     public interface IOrphansConcater
     {

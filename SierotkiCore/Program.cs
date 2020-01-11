@@ -1,6 +1,6 @@
-﻿using NDesk.Options;
+﻿using Autofac;
+using NDesk.Options;
 using SierotkiCore.Logic;
-using SierotkiCore.Logic.Files;
 using SierotkiCore.Models;
 using System;
 using System.Collections.Generic;
@@ -49,8 +49,15 @@ namespace SierotkiCore
                     ShowHelp();
                 }
 
-                var logic = new SierotkiLogic(new FileLogic(), new OrphansConcater(settings));
-                await logic.ConcatOrphansInTexFileAsync(settings.FilePath);
+                var container = new ContainerBuilder().RegisterServices();
+                container.RegisterInstance(settings);
+
+                using (var services = container.Build().BeginLifetimeScope())
+                {
+                    var logic = services.Resolve<ISierotkiLogic>();
+                    await logic.ConcatOrphansInTexFileAsync(settings.FilePath);
+
+                }
             }
             catch (OptionException ex)
             {

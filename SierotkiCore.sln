@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29519.181
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SierotkiCore", "SierotkiCore\SierotkiCore.csproj", "{95A7E221-608A-4F14-A81D-00B3F1CAD3EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SierotkiCore", "SierotkiCore\SierotkiCore.csproj", "{95A7E221-608A-4F14-A81D-00B3F1CAD3EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SierotkiCore.Tests", "SierotkiCore.Tests\SierotkiCore.Tests.csproj", "{8B6F42E4-0916-49AC-9909-F49097EDBF8C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SierotkiCore.Tests", "SierotkiCore.Tests\SierotkiCore.Tests.csproj", "{48110E92-F1BD-4EA7-97D9-C3F31DAF9FB6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{95A7E221-608A-4F14-A81D-00B3F1CAD3EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95A7E221-608A-4F14-A81D-00B3F1CAD3EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{95A7E221-608A-4F14-A81D-00B3F1CAD3EF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8B6F42E4-0916-49AC-9909-F49097EDBF8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8B6F42E4-0916-49AC-9909-F49097EDBF8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8B6F42E4-0916-49AC-9909-F49097EDBF8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8B6F42E4-0916-49AC-9909-F49097EDBF8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48110E92-F1BD-4EA7-97D9-C3F31DAF9FB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48110E92-F1BD-4EA7-97D9-C3F31DAF9FB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48110E92-F1BD-4EA7-97D9-C3F31DAF9FB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48110E92-F1BD-4EA7-97D9-C3F31DAF9FB6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
