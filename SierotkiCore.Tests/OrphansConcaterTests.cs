@@ -1,22 +1,23 @@
 using NUnit.Framework;
-using SierotkiCore.Logic.Files;
-using System.Collections.Generic;
+using SierotkiCore.Logic.Lines;
+using SierotkiCore.Models;
 
 namespace SierotkiCore.Tests
 {
-    public class SierotkiLogicTests
+    [TestFixture]
+    public class OrphansConcaterTests
     {
-        private readonly IEnumerable<string> orphans = new[] {
-            "albo", "wiêc", "lecz", "przez", "niech", "tylko" , "gdzie"
-        };
-
-        private SierotkiLogic CreateSut()
+        private IOrphansConcater CreateSut()
         {
-            return new SierotkiLogic(new Models.Settings(), new FileLogic());
+            return new OrphansConcater(new Settings
+            {
+                Orphans = new[] { "albo" }
+            });
         }
 
         [TestCase("Jas i Malgosia", "Jas i~Malgosia")]
         [TestCase("python detector.py -h", "python detector.py -h")]
+        [TestCase("piatek albo wtorek", "piatek albo~wtorek")]
         public void ConcatOrphans_WhenTextProvided_ThenItShouldConcatOrpphansAndNextWordWithTylda(string text, string expected)
         {
             var sut = CreateSut();

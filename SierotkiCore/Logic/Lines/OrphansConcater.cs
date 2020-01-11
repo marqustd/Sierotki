@@ -2,7 +2,7 @@
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace SierotkiCore.Logic
+namespace SierotkiCore.Logic.Lines
 {
     internal sealed class OrphansConcater : IOrphansConcater
     {
@@ -39,7 +39,7 @@ namespace SierotkiCore.Logic
             }
 
             var pattern = sb.ToString();
-            return new Regex(pattern);
+            return new Regex(pattern, RegexOptions.IgnoreCase);
         }
     }
 }
