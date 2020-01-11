@@ -2,9 +2,9 @@
 using System.IO;
 using System.Threading.Tasks;
 
-namespace SierotkiCore.Logic
+namespace SierotkiCore.Logic.Files
 {
-    public sealed class FileLogic : IFileReader
+    internal sealed class FileLogic : IFileLogic
     {
         public async IAsyncEnumerable<string> ReadDocumentAsync(string filepath)
         {
@@ -14,6 +14,7 @@ namespace SierotkiCore.Logic
             {
                 yield return line;
             }
+            file.Close();
         }
 
         public async Task WriteDocumentAsync(string filepath, IAsyncEnumerable<string> lines)
@@ -23,6 +24,12 @@ namespace SierotkiCore.Logic
             {
                 await file.WriteLineAsync(line);
             }
+            file.Close();
+        }
+
+        public void CopyFile(string filepath, string newFilepath)
+        {
+            File.Copy(filepath, newFilepath);
         }
     }
 }

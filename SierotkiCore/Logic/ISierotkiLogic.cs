@@ -4,7 +4,6 @@ namespace SierotkiCore.Logic
 {
     public interface ISierotkiLogic
     {
-        string ConcatOrphansInLine(string line);
-        Task LogicLol(string filepath);
+        Task ConcatOrphansInTexFileAsync(string filepath);
     }
 }

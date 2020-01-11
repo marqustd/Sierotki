@@ -1,5 +1,5 @@
 using NUnit.Framework;
-using SierotkiCore.Logic;
+using SierotkiCore.Logic.Files;
 using System.Collections.Generic;
 
 namespace SierotkiCore.Tests
@@ -16,8 +16,8 @@ namespace SierotkiCore.Tests
         }
 
         [TestCase("Jas i Malgosia", "Jas i~Malgosia")]
-        [TestCase("jedz, bo ci wystygnie", "jedz, bo~ci~wystygnie")]
-        public void ConcatOrphans_WhenTextProvided_ThenItShouldConcatOrpphansAndNextWordWithTylda(string text, string expected, int length)
+        [TestCase("python detector.py -h", "python detector.py -h")]
+        public void ConcatOrphans_WhenTextProvided_ThenItShouldConcatOrpphansAndNextWordWithTylda(string text, string expected)
         {
             var sut = CreateSut();
             var result = sut.ConcatOrphansInLine(text);

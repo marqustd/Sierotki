@@ -1,5 +1,6 @@
 ﻿using NDesk.Options;
 using SierotkiCore.Logic;
+using SierotkiCore.Logic.Files;
 using SierotkiCore.Models;
 using System;
 using System.Collections.Generic;
@@ -48,13 +49,13 @@ namespace SierotkiCore
                     ShowHelp();
                 }
 
-                var logic = new SierotkiLogic(settings, new FileLogic());
-                var lines = logic.LogicLol("nowy.tex");
+                var logic = new SierotkiLogic(new FileLogic(), new OrphansConcater(settings));
+                await logic.ConcatOrphansInTexFileAsync(settings.FilePath);
             }
             catch (OptionException ex)
             {
                 Console.WriteLine(ex.Message);
-                Console.WriteLine("Try `greet --help' for more information.");
+                Console.WriteLine("Try `greet --help' for more information.");//todo
             }
         }
 
