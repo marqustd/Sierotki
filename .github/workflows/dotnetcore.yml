@@ -15,17 +15,5 @@ jobs:
         dotnet-version: 3.1.100
     - name: Build with dotnet
       run: dotnet build --configuration Release
-
-  test:
-
-    runs-on: ubuntu-latest
-
-    steps:
-    - continue-on-error: false
-    - uses: actions/checkout@v1
-    - name: Run tests
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 3.1.100
-    - name: Dotnet tests
+    - name: Test with dotnet
       run: dotnet test
