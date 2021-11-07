@@ -6,22 +6,31 @@ namespace SierotkiCore.Logic
 {
     internal sealed class SierotkiLogic : ISierotkiLogic
     {
-        private readonly IFileLogic fileLogic;
+        private readonly IFilesLogic filesLogic;
         private readonly IOrphansProcessor orphansProcessor;
 
-        public SierotkiLogic(IFileLogic fileLogic, IOrphansProcessor orphansProcessor)
+        public SierotkiLogic(IFilesLogic fileLogic, IOrphansProcessor orphansProcessor)
         {
-            this.fileLogic = fileLogic;
+            filesLogic = fileLogic;
             this.orphansProcessor = orphansProcessor;
+        }
+
+        public async Task ConcatOrphansInFolderAsync(string folderpath)
+        {
+            var files = filesLogic.GetPathToAllFiles(folderpath, "*.tex");
+            foreach (var file in files)
+            {
+                await ConcatOrphansInTexFileAsync(file);
+            }
         }
 
         public async Task ConcatOrphansInTexFileAsync(string filepath)
         {
             var newFilePath = filepath + "(copy)";
-            fileLogic.CopyFile(filepath, newFilePath);
-            var oryginalLines = fileLogic.ReadDocumentAsync(newFilePath);
+            filesLogic.CopyFile(filepath, newFilePath);
+            var oryginalLines = filesLogic.ReadDocumentAsync(newFilePath);
             var newLines = orphansProcessor.ConcatOrphansInLinesAsync(oryginalLines);
-            await fileLogic.WriteDocumentAsync(filepath, newLines);
+            await filesLogic.WriteDocumentAsync(filepath, newLines);
         }
     }
 }

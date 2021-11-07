@@ -19,7 +19,8 @@ namespace SierotkiCore
 
             argsParser.Add("l|length=", "the maximum length of orphan (defaul: 1)", (int l) => settings.Length = l);
             argsParser.Add("i|input=", "the path to .tex file", i => settings.FilePath = i);
-            argsParser.Add("h|help", "show this message and exit", v => showHelp = v != null);
+            argsParser.Add("f|folder=", "the path to folder with .tex files", i => settings.FolderPath = i);
+            argsParser.Add("h|help", "shows this message and exit", v => showHelp = v != null);
 
             settings.Orphans = argsParser.Parse(args);
 
@@ -27,9 +28,9 @@ namespace SierotkiCore
             {
                 throw new OptionException("Length must be positive integer!", "LENGTH");
             }
-            if (string.IsNullOrWhiteSpace(settings.FilePath))
+            if (string.IsNullOrWhiteSpace(settings.FilePath) && string.IsNullOrWhiteSpace(settings.FolderPath))
             {
-                throw new OptionException("A filepath to .tex file must be provided", "INPUT");
+                throw new OptionException("A filepath to .tex file or folder must be provided", "INPUT");
             }
             if (showHelp)
             {
@@ -55,8 +56,19 @@ namespace SierotkiCore
                 using (var services = container.Build().BeginLifetimeScope())
                 {
                     var logic = services.Resolve<ISierotkiLogic>();
-                    await logic.ConcatOrphansInTexFileAsync(settings.FilePath);
 
+                    if (!string.IsNullOrWhiteSpace(settings.FilePath))
+                    {
+                        await logic.ConcatOrphansInTexFileAsync(settings.FilePath);
+                    }
+                    else if (!string.IsNullOrWhiteSpace(settings.FolderPath))
+                    {
+                        await logic.ConcatOrphansInFolderAsync(settings.FolderPath);
+                    }
+                    else
+                    {
+                        throw new ArgumentException("No input provided.");
+                    }
                 }
             }
             catch (OptionException ex)

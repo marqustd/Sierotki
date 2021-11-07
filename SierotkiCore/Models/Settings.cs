@@ -8,5 +8,6 @@ namespace SierotkiCore.Models
         public int Length { get; set; } = 1;
         public IEnumerable<string> Orphans { get; set; } = Array.Empty<string>();
         public string FilePath { get; set; } = string.Empty;
+        public string FolderPath { get; set; } = string.Empty;
     }
 }

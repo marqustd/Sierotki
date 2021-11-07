@@ -11,7 +11,7 @@ namespace SierotkiCore
     {
         public static ContainerBuilder RegisterServices(this ContainerBuilder builder)
         {
-            builder.RegisterType<FileLogic, IFileLogic>();
+            builder.RegisterType<FilesLogic, IFilesLogic>();
 
             builder.RegisterType<OrphansConcater, IOrphansConcater>();
             builder.RegisterType<SierotkiLogic, ISierotkiLogic>();

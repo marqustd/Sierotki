@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace SierotkiCore.Logic.Files
 {
-    internal sealed class FileLogic : IFileLogic
+    internal sealed class FilesLogic : IFilesLogic
     {
         public async IAsyncEnumerable<string> ReadDocumentAsync(string filepath)
         {
@@ -30,6 +30,11 @@ namespace SierotkiCore.Logic.Files
         public void CopyFile(string filepath, string newFilepath)
         {
             File.Copy(filepath, newFilepath);
+        }
+
+        public IEnumerable<string> GetPathToAllFiles(string path, string extension)
+        {
+            return Directory.GetFiles(path, extension, SearchOption.AllDirectories);
         }
     }
 }
