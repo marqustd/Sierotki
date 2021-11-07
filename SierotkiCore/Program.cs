@@ -24,6 +24,10 @@ namespace SierotkiCore
 
             settings.Orphans = argsParser.Parse(args);
 
+            if (showHelp)
+            {
+                return null;
+            }
             if (settings.Length < 1)
             {
                 throw new OptionException("Length must be positive integer!", "LENGTH");
@@ -31,10 +35,6 @@ namespace SierotkiCore
             if (string.IsNullOrWhiteSpace(settings.FilePath) && string.IsNullOrWhiteSpace(settings.FolderPath))
             {
                 throw new OptionException("A filepath to .tex file or folder must be provided", "INPUT");
-            }
-            if (showHelp)
-            {
-                return null;
             }
 
             return settings;
@@ -48,6 +48,7 @@ namespace SierotkiCore
                 if (settings is null)
                 {
                     ShowHelp();
+                    return;
                 }
 
                 var container = new ContainerBuilder().RegisterServices();
@@ -74,7 +75,7 @@ namespace SierotkiCore
             catch (OptionException ex)
             {
                 Console.WriteLine(ex.Message);
-                Console.WriteLine("Try `greet --help' for more information.");//todo
+                Console.WriteLine("Try `--help' for more information.");
             }
         }
 
