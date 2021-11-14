@@ -1,4 +1,4 @@
-name: .NET 6 CI
+name: Master
 
 on: [push]
 
