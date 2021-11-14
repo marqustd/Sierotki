@@ -5,23 +5,23 @@ using SierotkiCore.Models;
 namespace SierotkiCore.Tests
 {
     [TestFixture]
-    public class OrphansConcaterTests
+    public class SpacesReplacerTests
     {
-        private IOrphansConcater CreateSut()
+        private ISpacesReplacer CreateSut()
         {
-            return new OrphansConcater(new Settings
+            return new SpacesReplacer(new Settings
             {
-                Orphans = new[] { "albo" }
+                Words = new[] { "albo" }
             });
         }
 
         [TestCase("Jas i Malgosia", "Jas i~Malgosia")]
         [TestCase("python detector.py -h", "python detector.py -h")]
         [TestCase("piatek albo wtorek", "piatek albo~wtorek")]
-        public void ConcatOrphans_WhenTextProvided_ThenItShouldConcatOrpphansAndNextWordWithTylda(string text, string expected)
+        public void ReplaceSpacesInLine_WhenTextProvided_ThenItShouldConcatOrpphansAndNextWordWithTylda(string text, string expected)
         {
             var sut = CreateSut();
-            var result = sut.ConcatOrphansInLine(text);
+            var result = sut.ReplaceSpacesInLine(text);
             Assert.AreEqual(expected, result);
         }
     }

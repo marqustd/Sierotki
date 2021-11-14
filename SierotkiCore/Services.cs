@@ -13,9 +13,9 @@ namespace SierotkiCore
         {
             builder.RegisterType<FilesLogic, IFilesLogic>();
 
-            builder.RegisterType<OrphansConcater, IOrphansConcater>();
+            builder.RegisterType<SpacesReplacer, ISpacesReplacer>();
             builder.RegisterType<SierotkiLogic, ISierotkiLogic>();
-            builder.RegisterType<OrphansProcessor, IOrphansProcessor>();
+            builder.RegisterType<LinesProcessor, ILinesProcessor>();
             builder.RegisterType<SpecialTexLineChecker, ISpecialTexLineChecker>();
             builder.RegisterType<TexBeginRegexMaker, ITexBeginRegexMaker>();
             return builder;

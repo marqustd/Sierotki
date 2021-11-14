@@ -2,7 +2,7 @@
   "profiles": {
     "SierotkiCore": {
       "commandName": "Project",
-      "commandLineArgs": "-f \"C:\\Users\\marek\\Downloads\\Praca Magisterska - Wykrywanie tempa i metrum utworu muzycznego\""
+      "commandLineArgs": "--folder-path \"C:\\Users\\marek\\Downloads\\Praca Magisterska - Wykrywanie tempa i metrum utworu muzycznego\""
     }
   }
 }

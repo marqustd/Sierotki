@@ -7,29 +7,29 @@ namespace SierotkiCore.Logic
     internal sealed class SierotkiLogic : ISierotkiLogic
     {
         private readonly IFilesLogic filesLogic;
-        private readonly IOrphansProcessor orphansProcessor;
+        private readonly ILinesProcessor linesProcessor;
 
-        public SierotkiLogic(IFilesLogic fileLogic, IOrphansProcessor orphansProcessor)
+        public SierotkiLogic(IFilesLogic fileLogic, ILinesProcessor linesProcessor)
         {
             filesLogic = fileLogic;
-            this.orphansProcessor = orphansProcessor;
+            this.linesProcessor = linesProcessor;
         }
 
-        public async Task ConcatOrphansInFolderAsync(string folderpath)
+        public async Task ReplaceSpacesInFolderAsync(string folderpath)
         {
             var files = filesLogic.GetPathToAllFiles(folderpath, "*.tex");
             foreach (var file in files)
             {
-                await ConcatOrphansInTexFileAsync(file);
+                await ReplaceSpacesInTexFileAsync(file);
             }
         }
 
-        public async Task ConcatOrphansInTexFileAsync(string filepath)
+        public async Task ReplaceSpacesInTexFileAsync(string filepath)
         {
             var newFilePath = filepath + "(copy)";
             filesLogic.CopyFile(filepath, newFilePath);
             var oryginalLines = filesLogic.ReadDocumentAsync(newFilePath);
-            var newLines = orphansProcessor.ConcatOrphansInLinesAsync(oryginalLines);
+            var newLines = linesProcessor.ReplaceSpacesInLinesAsync(oryginalLines);
             await filesLogic.WriteDocumentAsync(filepath, newLines);
         }
     }

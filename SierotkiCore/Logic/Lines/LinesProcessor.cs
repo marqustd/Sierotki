@@ -2,20 +2,20 @@
 
 namespace SierotkiCore.Logic.Lines
 {
-    internal class OrphansProcessor : IOrphansProcessor
+    internal class LinesProcessor : ILinesProcessor
     {
-        private readonly IOrphansConcater orphansConcater;
+        private readonly ISpacesReplacer spacesReplacer;
         private readonly ISpecialTexLineChecker specialLineChecker;
         private bool startLineOccured = false;
         private readonly string startLine = @"\begin{document}";
 
-        public OrphansProcessor(IOrphansConcater orphansConcater, ISpecialTexLineChecker specialLineChecker)
+        public LinesProcessor(ISpacesReplacer spacesReplacer, ISpecialTexLineChecker specialLineChecker)
         {
-            this.orphansConcater = orphansConcater;
+            this.spacesReplacer = spacesReplacer;
             this.specialLineChecker = specialLineChecker;
         }
 
-        public async IAsyncEnumerable<string> ConcatOrphansInLinesAsync(IAsyncEnumerable<string> lines)
+        public async IAsyncEnumerable<string> ReplaceSpacesInLinesAsync(IAsyncEnumerable<string> lines)
         {
             await foreach (var line in lines)
             {
@@ -32,7 +32,7 @@ namespace SierotkiCore.Logic.Lines
 
                 if (!specialLineChecker.CheckIfSpecialFragment(line))
                 {
-                    line = orphansConcater.ConcatOrphansInLine(line);
+                    line = spacesReplacer.ReplaceSpacesInLine(line);
                 }
             }
             else

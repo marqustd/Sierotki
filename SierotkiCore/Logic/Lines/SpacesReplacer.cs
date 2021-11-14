@@ -4,16 +4,16 @@ using System.Text.RegularExpressions;
 
 namespace SierotkiCore.Logic.Lines
 {
-    internal sealed class OrphansConcater : IOrphansConcater
+    internal sealed class SpacesReplacer : ISpacesReplacer
     {
         private readonly Regex regex;
 
-        public OrphansConcater(Settings settings)
+        public SpacesReplacer(Settings settings)
         {
             regex = CreateRegex(settings);
         }
 
-        public string ConcatOrphansInLine(string line)
+        public string ReplaceSpacesInLine(string line)
         {
             var matches = regex.Matches(line);
             var sb = new StringBuilder(line);
@@ -33,9 +33,9 @@ namespace SierotkiCore.Logic.Lines
         {
             var sb = new StringBuilder($"\\s\\w{{1,{settings.Length}}}\\s");
 
-            foreach (var orphan in settings.Orphans)
+            foreach (var word in settings.Words)
             {
-                sb.Append($"|\\s{orphan}\\s");
+                sb.Append($"|\\s{word}\\s");
             }
 
             var pattern = sb.ToString();
