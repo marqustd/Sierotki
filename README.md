@@ -1,7 +1,6 @@
 # Sierotki
-<p align="left">
-  <a href="https://github.com/marqustd/Sierotki"><img alt="GitHub Actions status" src="https://github.com/marqustd/Sierotki/actions/workflows/build.yml/badge.svg?branch=master"></a>
-</p>
+
+[![Master](https://github.com/marqustd/Sierotki/actions/workflows/build.yml/badge.svg)](https://github.com/marqustd/Sierotki/actions/workflows/build.yml)
 
 The program replaces spaces with non-breaking space characters `'~'` in .tex files before one-character words. One-character word at the end of a line is considered a typographical mistake in Poland. This mistake is called “sierotka” (pl. _orphan_).
 
